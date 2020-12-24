@@ -32,12 +32,19 @@ export class AppComponent implements OnInit {
   public form: FormGroup;
   public techStack: string[] = [];
   public markdown: string;
+  breakpoint: number;
   constructor(
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar
   ) {}
 
+  onResize(event: any) {
+    this.breakpoint = event.target.innerWidth <= 400 ? 1 : 2;
+  }
+
   ngOnInit() {
+    this.breakpoint = window.innerWidth <= 400 ? 1 : 2;
+
     this.form = this.formBuilder.group({
       dependancies: [samplePackageJson, validateJSON],
     });

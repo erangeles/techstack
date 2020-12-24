@@ -1,107 +1,134 @@
 <mat-toolbar>
-    <img style="width: 40px" src="./assets/stack.svg" />
-    <h1>TechStack</h1>
-    <span style="flex: 1 1 auto"></span>
-    <a
-        style="padding: 0 14px"
-        href="https://twitter.com/ericangeless"
-        rel="noopener noreferrer"
-        role="link"
-        tabIndex="0"
-    >
-        <img
-            width="25"
-            src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/twitter.svg"
-            alt="Twitter Icon"
-        />
-    </a>
-    <a
-        style="padding: 0 14px"
-        href="https://github.com/erangeles/techstack"
-        rel="noopener noreferrer"
-        role="link"
-        tabIndex="0"
-    >
-        <img
-            width="25"
-            src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg"
-            alt="Github Icon"
-        />
-    </a>
+  <img style="width: 40px" src="./assets/stack.svg" />
+  <h1>TechStack</h1>
+  <span style="flex: 1 1 auto"></span>
+  <a
+    style="padding: 0 14px"
+    href="https://twitter.com/ericangeless"
+    rel="noopener noreferrer"
+    role="link"
+    tabIndex="0"
+  >
+    <img
+      width="25"
+      src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/twitter.svg"
+      alt="Twitter Icon"
+    />
+  </a>
+  <a
+    style="padding: 0 14px"
+    href="https://github.com/erangeles/techstack"
+    rel="noopener noreferrer"
+    role="link"
+    tabIndex="0"
+  >
+    <img
+      width="25"
+      src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg"
+      alt="Github Icon"
+    />
+  </a>
 
-    <a
-        style="padding: 0 14px"
-        href="https://www.linkedin.com/in/eric-a-98265613b/"
-        rel="noopener noreferrer"
-        role="link"
-        tabIndex="0"
-    >
-        <img
-            width="65"
-            src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/linkedin.svg"
-            alt="Linkedin Icon"
-        />
-    </a>
+  <a
+    style="padding: 0 14px"
+    href="https://www.linkedin.com/in/eric-a-98265613b/"
+    rel="noopener noreferrer"
+    role="link"
+    tabIndex="0"
+  >
+    <img
+      width="65"
+      src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/linkedin.svg"
+      alt="Linkedin Icon"
+    />
+  </a>
 </mat-toolbar>
-<mat-grid-list cols="2">
-    <mat-grid-tile>
-        <div [style.width.%]="90">
-            <mat-card>
-                <h3>
-                    TechStack is an easy way to visualize your techstack in your <code>README.md</code> file. Logos
-                    provided by <a href="https://github.com/gilbarbara/logos">SVG Logos</a>.
-                </h3>
-                <ol>
-                    <li>
-                        <span
-                            >Paste your
-                            <code>package.json</code>
-                            below
-                        </span>
-                    </li>
-                    <li>Verify your logos are correct, delete the ones that don't apply</li>
-                    <li>Copy the markdown and add it to your <code>Readme.md</code> file</li>
-                </ol>
-            </mat-card>
+<mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)">
+  <mat-grid-tile>
+    <div [style.width.%]="90">
+      <mat-card>
+        <h3>
+          TechStack is an easy way to visualize your techstack in your
+          <code>README.md</code> file. Logos provided by
+          <a href="https://github.com/gilbarbara/logos">SVG Logos</a>.
+        </h3>
+        <ol>
+          <li>
+            <span
+              >Paste your
+              <code>package.json</code>
+              below
+            </span>
+          </li>
+          <li>
+            Verify your logos are correct, delete the ones that don't apply
+          </li>
+          <li>
+            Copy the markdown and add it to your <code>Readme.md</code> file
+          </li>
+        </ol>
+      </mat-card>
 
-            <form [formGroup]="form">
-                <div>
-                    <ngx-codemirror id="dependancies" [options]="packageJsonEditor" formControlName="dependancies">
-                    </ngx-codemirror>
-                    <strong *ngIf="form.get('dependancies').invalid" style="color: red">Invalid JSON syntax.</strong>
-                </div>
+      <form [formGroup]="form">
+        <div>
+          <ngx-codemirror
+            id="dependancies"
+            [options]="packageJsonEditor"
+            formControlName="dependancies"
+          >
+          </ngx-codemirror>
+          <strong *ngIf="form.get('dependancies').invalid" style="color: red"
+            >Invalid JSON syntax.</strong
+          >
+        </div>
 
-                <button mat-raised-button color="primary" style="margin-top: 5px" (click)="clear()">Clear</button>
-            </form>
+        <button
+          mat-raised-button
+          color="primary"
+          style="margin-top: 5px"
+          (click)="clear()"
+        >
+          Clear
+        </button>
+      </form>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div layout="row" [style.width.%]="90">
+      <div *ngIf="techStack">
+        <div
+          *ngFor="let img of techStack"
+          style="display: block; float: left; margin-right: 15px"
+        >
+          <button
+            mat-button
+            color="primary"
+            aria-label="Example icon button with a menu icon"
+            style="position: absolute; float: right; padding-left: 45px"
+            (click)="deleteLogo(img)"
+          >
+            <mat-icon>cancel</mat-icon>
+          </button>
+          <img width="55" src="{{ img }}" />
         </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <div layout="row" [style.width.%]="90">
-            <div *ngIf="techStack">
-                <div *ngFor="let img of techStack" style="display: block; float: left; margin-right: 15px">
-                    <button
-                        mat-button
-                        color="primary"
-                        aria-label="Example icon button with a menu icon"
-                        style="position: absolute; float: right; padding-left: 45px"
-                        (click)="deleteLogo(img)"
-                    >
-                        <mat-icon>cancel</mat-icon>
-                    </button>
-                    <img width="55" src="{{ img }}" />
-                </div>
-            </div>
-            <ngx-codemirror style="float: left" id="load-flags" [options]="markDownEditor" [(ngModel)]="markdown">
-            </ngx-codemirror>
-            <button
-                style="float: left; margin-top: 5px"
-                [cdkCopyToClipboard]="markdown"
-                mat-raised-button
-                color="primary"
-                (click)="showToast()"
-            >
-                Copy to clipboard
-            </button>
-        </div>
-    </mat-grid-tile>
+      </div>
+
+      <ngx-codemirror
+        style="float: left"
+        id="load-flags"
+        [options]="markDownEditor"
+        [(ngModel)]="markdown"
+      >
+      </ngx-codemirror>
+      <button
+        style="float: left; margin-top: 5px"
+        [cdkCopyToClipboard]="markdown"
+        mat-raised-button
+        color="primary"
+        (click)="showToast()"
+      >
+        Copy to clipboard
+      </button>
+    </div>
+  </mat-grid-tile>
 </mat-grid-list>
