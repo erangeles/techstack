@@ -63,7 +63,10 @@ export class AppComponent implements OnInit {
   }
 
   extractLogos() {
-    if (this.form.get("dependancies").invalid) {
+    if (
+      !this.form.get("dependancies").value ||
+      this.form.get("dependancies").invalid
+    ) {
       return;
     }
     this.techStack = [];
@@ -100,6 +103,6 @@ export class AppComponent implements OnInit {
     this.markdown += "</div>";
   }
   clear() {
-    this.form.get("dependancies").setValue("");
+    this.form.get("dependancies").patchValue("");
   }
 }
