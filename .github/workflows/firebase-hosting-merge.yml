@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: "12.x"
       - name: Build
-        run: npm ci && npm install && ng build
+        run: npm ci && npm install && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
