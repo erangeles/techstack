@@ -11,7 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci && npm install && ng build
+      - name: Use Node 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Build
+        run: npm ci && npm install && ng build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
