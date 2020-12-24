@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~codemirror/lib/codemirror';
+@import '~codemirror/theme/material';
+
+.all-wrap {
+    min-height: 100vh; // same height as browser window height
+}
+
+.page-wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; // same height as browser window height
+}
+
+.content {
+    flex: 1; // child will set to an equal size inside the container
+}
+
+/*
+ * Make the component injected by <router-outlet> full height:
+ */
+
+main {
+    display: flex;
+    flex-direction: column;
+
+    // Select all direct descendants only of the <main> element
+    // that are not <router-outlet> elements:
+    > *:not(router-outlet) {
+        flex: 1; // child will set to an equal size inside the container
+        display: block;
+    }
+}
