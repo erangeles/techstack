@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "/dist/techstack/",
+    "public": "./dist/techstack",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -9,7 +9,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/dist/techstack/index.html"
+        "destination": "index.html"
       }
     ]
   }
