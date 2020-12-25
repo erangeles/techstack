@@ -1,50 +1,60 @@
-::ng-deep {
-	div .CodeMirror.cm-s-idea {
-		height: 100%;
-	}
-}
-
 .list {
-    margin-left: 2.5vw;
+	margin-left: 2.5vw;
 }
 
 .error {
-    color: red;
+	color: red;
 }
 
 .bg-dark {
-    background-color: #313131;
+	background-color: #313131;
 }
 
 .flexbox {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 2vh 2.5vw;
-    align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 2vh 2.5vw;
+	align-items: center;
     justify-content: center;
+    
+	@media screen and (max-width: 720px) {
+        flex-direction: column;
+    }
 }
 
 .col-flex {
-    display: flex;
-    flex-flow: column wrap;
+	display: flex;
+	flex-flow: column wrap;
 }
 
 .my-2 {
-    margin: 2em auto;
+	margin: 2em auto;
 }
 
 .mw-45 {
     max-width: 45vw;
+    
+    @media screen and (max-width: 720px) {
+        max-width: 80vw;
+    }
 }
 
 .min-h-90 {
-    min-height: 90vh;
+	min-height: 90vh;
 }
 
-.output-logo {
-    padding: 0.25em 1em;
+.logo-output {
+    display: flex;
+    flex-wrap: wrap;
+	padding: 2vh 2.5vw;
+	align-items: center;
+    justify-content: center;
 
-    img {
-        width: 55px;
+    div {
+        padding: 0.25em 1em;
+    
+        img {
+            width: 55px;
+        }
     }
 }

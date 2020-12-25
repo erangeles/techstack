@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="flexbox bg-dark min-h-90">
 	<!-- package json editor -->
-	<div class="my-2 mw-45 shadow">
+	<div class="my-2 mw-45 shadow child">
 		<mat-card>
 			<h3>
 				TechStack is an easy way to visualize your techstack in your
@@ -25,8 +25,8 @@
 		<!-- input form -->
 		<form [formGroup]="form">
 			<div>
-        <ngx-codemirror
-          (change)="extractLogos()"
+				<ngx-codemirror
+					(change)="extractLogos()"
 					id="dependancies"
 					[options]="packageJsonEditor"
 					formControlName="dependancies"
@@ -49,10 +49,10 @@
 	</div>
 
 	<!-- output editor -->
-	<div class="my-2 mw-45 shadow">
+	<div class="my-2 mw-45 shadow child">
 		<div class="col-flex">
-			<div *ngIf="techStack" class="flexbox">
-				<div class="output-logo" *ngFor="let img of techStack">
+			<div *ngIf="techStack" class="logo-output">
+				<div *ngFor="let img of techStack">
 					<button
 						mat-button
 						color="accent"
@@ -79,10 +79,10 @@
 
 			<button
 				class="my-2"
-				[cdkCopyToClipboard]="markdown"
-				mat-raised-button
 				color="primary"
+				mat-raised-button
 				(click)="showToast()"
+				[cdkCopyToClipboard]="markdown"
 			>
 				Copy to clipboard
 			</button>
