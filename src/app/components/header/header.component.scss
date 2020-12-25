@@ -18,5 +18,13 @@ header > nav {
 			display: inline-block;
 			color: white;
 		}
+
+		@media screen and (max-width: 720px) {
+			margin: 0 auto;
+		}
 	}
+
+	@media screen and (max-width: 720px) {
+        flex-direction: column;
+    }
 }
