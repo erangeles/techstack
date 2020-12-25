@@ -99,6 +99,7 @@
         <div
           *ngFor="let img of techStack"
           style="display: block; float: left; margin-right: 15px"
+          title="{{ img.name }}"
         >
           <button
             mat-button
@@ -109,7 +110,7 @@
           >
             <mat-icon>cancel</mat-icon>
           </button>
-          <img width="55" src="{{ img }}" />
+          <img width="55" src="{{ img.path }}" />
         </div>
       </div>
 

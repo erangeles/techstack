@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     mode: "gfm",
   };
   public form: FormGroup;
-  public techStack: string[] = [];
+  public techStack: any[] = [];
   public markdown: string;
   breakpoint: number;
   constructor(
@@ -79,9 +79,10 @@ export class AppComponent implements OnInit {
     logos.forEach((element: string) => {
       s.filter((d) => {
         if (fuzzyMatch(d, element) > 0.5) {
-          this.techStack.push(
-            `https://raw.githubusercontent.com/gilbarbara/logos/master/logos/${element}.svg`
-          );
+          this.techStack.push({
+            path: `https://raw.githubusercontent.com/gilbarbara/logos/master/logos/${element}.svg`,
+            name: element,
+          });
         }
       });
     });
@@ -98,7 +99,7 @@ export class AppComponent implements OnInit {
     this.markdown = "";
     this.markdown = '<div align="center">';
     this.techStack.forEach((element: any) => {
-      this.markdown += `<img width="55" src="${element}"/>`;
+      this.markdown += `<img width="55" src="${element.path}"/>`;
     });
     this.markdown += "</div>";
   }
