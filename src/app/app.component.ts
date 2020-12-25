@@ -9,7 +9,7 @@ import { validateJSON } from "./validators/json.function";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styles: ["::ng-deep { div .CodeMirror.cm-s-idea { height:100%; } } "],
+  styles: ["::ng-deep { div .CodeMirror.cm-s-idea { min-height:100%; } } "],
 })
 export class AppComponent implements OnInit {
   public baseCodeMirrorRules: any = {

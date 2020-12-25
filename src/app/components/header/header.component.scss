@@ -1,0 +1,22 @@
+header > nav {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0.5em 5%;
+	align-items: center;
+	justify-content: flex-end;
+
+    background-color: #1f1f1f;
+
+	.logo {
+		margin-right: auto;
+
+		img {
+			width: 2.5em;
+		}
+
+		.brand {
+			display: inline-block;
+			color: white;
+		}
+	}
+}

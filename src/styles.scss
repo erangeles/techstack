@@ -2,6 +2,11 @@
 @import '~codemirror/lib/codemirror';
 @import '~codemirror/theme/material';
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .all-wrap {
     min-height: 100vh; // same height as browser window height
 }
@@ -14,6 +19,10 @@
 
 .content {
     flex: 1; // child will set to an equal size inside the container
+}
+
+mat-grid-list {
+    background-color: #383838;
 }
 
 /*

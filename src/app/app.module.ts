@@ -12,9 +12,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
+import { HeaderComponent } from './components/header/header.component';
+import { SocialLinksComponent } from './components/header/social-links/social-links.component';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, HeaderComponent, SocialLinksComponent],
     imports: [
         BrowserModule,
         MatCardModule,

@@ -1,48 +1,4 @@
-<mat-toolbar>
-  <img style="width: 40px" src="./assets/stack.svg" />
-  <h1>TechStack</h1>
-  <span style="flex: 1 1 auto"></span>
-  <a
-    style="padding: 0 14px"
-    href="https://twitter.com/ericangeless"
-    rel="noopener noreferrer"
-    role="link"
-    tabIndex="0"
-  >
-    <img
-      width="25"
-      src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/twitter.svg"
-      alt="Twitter Icon"
-    />
-  </a>
-  <a
-    style="padding: 0 14px"
-    href="https://github.com/erangeles/techstack"
-    rel="noopener noreferrer"
-    role="link"
-    tabIndex="0"
-  >
-    <img
-      width="25"
-      src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg"
-      alt="Github Icon"
-    />
-  </a>
-
-  <a
-    style="padding: 0 14px"
-    href="https://www.linkedin.com/in/eric-a-98265613b/"
-    rel="noopener noreferrer"
-    role="link"
-    tabIndex="0"
-  >
-    <img
-      width="65"
-      src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/linkedin.svg"
-      alt="Linkedin Icon"
-    />
-  </a>
-</mat-toolbar>
+<app-header></app-header>
 <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)">
   <mat-grid-tile>
     <div [style.width.%]="90">
