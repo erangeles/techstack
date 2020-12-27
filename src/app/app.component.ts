@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   };
   
   public form: FormGroup;
-  public techStack: string[] = [];
+  public techStack: any[] = [];
   public markdown: string;
   breakpoint: number;
 
@@ -64,7 +64,10 @@ export class AppComponent implements OnInit {
   }
 
   extractLogos() {
-    if (this.form.get("dependancies").invalid) {
+    if (
+      !this.form.get("dependancies").value ||
+      this.form.get("dependancies").invalid
+    ) {
       return;
     }
     this.techStack = [];
@@ -77,9 +80,10 @@ export class AppComponent implements OnInit {
     logos.forEach((element: string) => {
       s.filter((d) => {
         if (fuzzyMatch(d, element) > 0.5) {
-          this.techStack.push(
-            `https://raw.githubusercontent.com/gilbarbara/logos/master/logos/${element}.svg`
-          );
+          this.techStack.push({
+            path: `https://raw.githubusercontent.com/gilbarbara/logos/master/logos/${element}.svg`,
+            name: element,
+          });
         }
       });
     });
@@ -96,12 +100,12 @@ export class AppComponent implements OnInit {
     this.markdown = "";
     this.markdown = '<div align="center">';
     this.techStack.forEach((element: any) => {
-      this.markdown += `<img width="55" src="${element}"/>`;
+      this.markdown += `<img width="55" src="${element.path}"/>`;
     });
     this.markdown += "</div>";
   }
 
   clear() {
-    this.form.get("dependancies").setValue("");
+    this.form.get("dependancies").patchValue("");
   }
 }

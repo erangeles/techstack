@@ -69,13 +69,43 @@
 					<img src="{{ img }}" />
 				</div>
 			</div>
-
 			<ngx-codemirror
 				id="load-flags"
 				[options]="markDownEditor"
 				[(ngModel)]="markdown"
 			>
 			</ngx-codemirror>
+        <button
+          mat-raised-button
+          color="primary"
+          style="margin-top: 5px"
+          (click)="clear()"
+        >
+          Clear
+        </button>
+      </form>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div layout="row" [style.width.%]="90">
+      <div *ngIf="techStack">
+        <div
+          *ngFor="let img of techStack"
+          style="display: block; float: left; margin-right: 15px"
+          title="{{ img.name }}"
+        >
+          <button
+            mat-button
+            color="primary"
+            aria-label="Example icon button with a menu icon"
+            style="position: absolute; float: right; padding-left: 45px"
+            (click)="deleteLogo(img)"
+          >
+            <mat-icon>cancel</mat-icon>
+          </button>
+          <img width="55" src="{{ img.path }}" />
+        </div>
+      </div>
 
 			<button
 				class="my-2"
