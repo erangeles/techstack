@@ -1,0 +1,34 @@
+.no-decoration {
+	list-style: none;
+
+	li {
+		padding: 0 1em;
+		font-weight: 500;
+		display: inline-block;
+		transition: all 0.3s ease-in-out;
+
+		&:hover {
+			transform: scale(1.25);
+		}
+
+		a {
+            text-decoration: none;
+		}
+	}
+}
+
+.linkedin, .github, .twitter {
+    color: white;
+}
+
+.linkedin:hover {
+	color: #0e76a8;
+}
+
+.github:hover {
+	color: #707070;
+}
+
+.twitter:hover {
+	color: #1da1f2;
+}

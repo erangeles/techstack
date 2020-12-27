@@ -1,0 +1,60 @@
+.list {
+	margin-left: 2.5vw;
+}
+
+.error {
+	color: red;
+}
+
+.bg-dark {
+	background-color: #313131;
+}
+
+.flexbox {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 2vh 2.5vw;
+	align-items: center;
+    justify-content: center;
+    
+	@media screen and (max-width: 720px) {
+        flex-direction: column;
+    }
+}
+
+.col-flex {
+	display: flex;
+	flex-flow: column wrap;
+}
+
+.my-2 {
+	margin: 2em auto;
+}
+
+.mw-45 {
+    max-width: 45vw;
+    
+    @media screen and (max-width: 720px) {
+        max-width: 80vw;
+    }
+}
+
+.min-h-90 {
+	min-height: 90vh;
+}
+
+.logo-output {
+    display: flex;
+    flex-wrap: wrap;
+	padding: 2vh 2.5vw;
+	align-items: center;
+    justify-content: center;
+
+    div {
+        padding: 0.25em 1em;
+    
+        img {
+            width: 55px;
+        }
+    }
+}

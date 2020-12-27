@@ -9,7 +9,7 @@ import { validateJSON } from "./validators/json.function";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styles: ["::ng-deep { div .CodeMirror.cm-s-idea { height:100%; } } "],
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
   public baseCodeMirrorRules: any = {
@@ -21,26 +21,26 @@ export class AppComponent implements OnInit {
     autoCloseBrackets: true,
     matchBrackets: true,
   };
+
   public packageJsonEditor: any = {
     ...this.baseCodeMirrorRules,
     mode: "application/json",
   };
+
   public markDownEditor = {
     ...this.baseCodeMirrorRules,
     mode: "gfm",
   };
+  
   public form: FormGroup;
   public techStack: any[] = [];
   public markdown: string;
   breakpoint: number;
+
   constructor(
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar
   ) {}
-
-  onResize(event: any) {
-    this.breakpoint = event.target.innerWidth <= 400 ? 1 : 2;
-  }
 
   ngOnInit() {
     this.breakpoint = window.innerWidth <= 400 ? 1 : 2;
@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
     this.form = this.formBuilder.group({
       dependancies: [samplePackageJson, validateJSON],
     });
+    
     this.extractLogos();
     this.form
       .get("dependancies")
@@ -103,6 +104,7 @@ export class AppComponent implements OnInit {
     });
     this.markdown += "</div>";
   }
+
   clear() {
     this.form.get("dependancies").patchValue("");
   }

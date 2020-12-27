@@ -1,87 +1,80 @@
-<mat-toolbar>
-  <img style="width: 40px" src="./assets/stack.svg" />
-  <h1>TechStack</h1>
-  <span style="flex: 1 1 auto"></span>
-  <a
-    style="padding: 0 14px"
-    href="https://twitter.com/ericangeless"
-    rel="noopener noreferrer"
-    role="link"
-    tabIndex="0"
-  >
-    <img
-      width="25"
-      src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/twitter.svg"
-      alt="Twitter Icon"
-    />
-  </a>
-  <a
-    style="padding: 0 14px"
-    href="https://github.com/erangeles/techstack"
-    rel="noopener noreferrer"
-    role="link"
-    tabIndex="0"
-  >
-    <img
-      width="25"
-      src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg"
-      alt="Github Icon"
-    />
-  </a>
+<app-header></app-header>
+<div class="flexbox bg-dark min-h-90">
+	<!-- package json editor -->
+	<div class="my-2 mw-45 shadow child">
+		<mat-card>
+			<h3>
+				TechStack is an easy way to visualize your techstack in your
+				<code>README.md</code> file. Logos provided by
+				<a href="https://github.com/gilbarbara/logos">SVG Logos</a>.
+			</h3>
+			<ul class="list">
+				<li>
+					<span> Paste your <code>package.json</code> below </span>
+				</li>
+				<li>
+					Verify your logos are correct, delete the ones that don't
+					apply
+				</li>
+				<li>
+					Copy the markdown and add it to your
+					<code>Readme.md</code> file
+				</li>
+			</ul>
+		</mat-card>
+		<!-- input form -->
+		<form [formGroup]="form">
+			<div>
+				<ngx-codemirror
+					(change)="extractLogos()"
+					id="dependancies"
+					[options]="packageJsonEditor"
+					formControlName="dependancies"
+				>
+				</ngx-codemirror>
+				<small *ngIf="form.get('dependancies').invalid" class="error">
+					Invalid JSON syntax.
+				</small>
+			</div>
 
-  <a
-    style="padding: 0 14px"
-    href="https://www.linkedin.com/in/eric-a-98265613b/"
-    rel="noopener noreferrer"
-    role="link"
-    tabIndex="0"
-  >
-    <img
-      width="65"
-      src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/linkedin.svg"
-      alt="Linkedin Icon"
-    />
-  </a>
-</mat-toolbar>
-<mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)">
-  <mat-grid-tile>
-    <div [style.width.%]="90">
-      <mat-card>
-        <h3>
-          TechStack is an easy way to visualize your techstack in your
-          <code>README.md</code> file. Logos provided by
-          <a href="https://github.com/gilbarbara/logos">SVG Logos</a>.
-        </h3>
-        <ol>
-          <li>
-            <span
-              >Paste your
-              <code>package.json</code>
-              below
-            </span>
-          </li>
-          <li>
-            Verify your logos are correct, delete the ones that don't apply
-          </li>
-          <li>
-            Copy the markdown and add it to your <code>Readme.md</code> file
-          </li>
-        </ol>
-      </mat-card>
+			<button
+				class="my-2"
+				mat-raised-button
+				color="primary"
+				(click)="clear()"
+			>
+				Clear
+			</button>
+		</form>
+	</div>
 
-      <form [formGroup]="form">
-        <div>
-          <ngx-codemirror
-            id="dependancies"
-            [options]="packageJsonEditor"
-            formControlName="dependancies"
-          >
-          </ngx-codemirror>
-          <strong *ngIf="form.get('dependancies').invalid" style="color: red"
-            >Invalid JSON syntax.</strong
-          >
-        </div>
-
+	<!-- output editor -->
+	<div class="my-2 mw-45 shadow child">
+		<div class="col-flex">
+			<div *ngIf="techStack" class="logo-output">
+				<div *ngFor="let img of techStack">
+					<button
+						mat-button
+						color="accent"
+						aria-label="button to remove an item"
+						style="
+							position: absolute;
+							float: right;
+							padding-left: 45px;
+						"
+						(click)="deleteLogo(img)"
+					>
+						<mat-icon>cancel</mat-icon>
+					</button>
+					<img src="{{ img }}" />
+				</div>
+			</div>
+			<ngx-codemirror
+				id="load-flags"
+				[options]="markDownEditor"
+				[(ngModel)]="markdown"
+			>
+			</ngx-codemirror>
         <button
           mat-raised-button
           color="primary"
@@ -114,22 +107,15 @@
         </div>
       </div>
 
-      <ngx-codemirror
-        style="float: left"
-        id="load-flags"
-        [options]="markDownEditor"
-        [(ngModel)]="markdown"
-      >
-      </ngx-codemirror>
-      <button
-        style="float: left; margin-top: 5px"
-        [cdkCopyToClipboard]="markdown"
-        mat-raised-button
-        color="primary"
-        (click)="showToast()"
-      >
-        Copy to clipboard
-      </button>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
+			<button
+				class="my-2"
+				color="primary"
+				mat-raised-button
+				(click)="showToast()"
+				[cdkCopyToClipboard]="markdown"
+			>
+				Copy to clipboard
+			</button>
+		</div>
+	</div>
+</div>
