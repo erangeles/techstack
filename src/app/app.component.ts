@@ -31,11 +31,10 @@ export class AppComponent implements OnInit {
     ...this.baseCodeMirrorRules,
     mode: "gfm",
   };
-  
+
   public form: FormGroup;
   public techStack: any[] = [];
   public markdown: string;
-  breakpoint: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,12 +42,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.breakpoint = window.innerWidth <= 400 ? 1 : 2;
-
     this.form = this.formBuilder.group({
       dependancies: [samplePackageJson, validateJSON],
     });
-    
+
     this.extractLogos();
     this.form
       .get("dependancies")
