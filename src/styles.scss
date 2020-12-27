@@ -1,28 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~codemirror/lib/codemirror';
-@import '~codemirror/theme/material';
+@import "~codemirror/lib/codemirror";
+@import "~codemirror/theme/material";
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .all-wrap {
-    min-height: 100vh; // same height as browser window height
+  min-height: 100vh; // same height as browser window height
 }
 
 .page-wrap {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; // same height as browser window height
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // same height as browser window height
 }
 
 .content {
-    flex: 1; // child will set to an equal size inside the container
+  flex: 1; // child will set to an equal size inside the container
 }
 
 mat-grid-list {
-    background-color: #383838;
+  background-color: #383838;
 }
 
 /*
@@ -30,13 +30,19 @@ mat-grid-list {
  */
 
 main {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    // Select all direct descendants only of the <main> element
-    // that are not <router-outlet> elements:
-    > *:not(router-outlet) {
-        flex: 1; // child will set to an equal size inside the container
-        display: block;
-    }
+  // Select all direct descendants only of the <main> element
+  // that are not <router-outlet> elements:
+  > *:not(router-outlet) {
+    flex: 1; // child will set to an equal size inside the container
+    display: block;
+  }
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
